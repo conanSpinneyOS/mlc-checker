@@ -71,7 +71,7 @@ export default function Home() {
                 <option disabled selected>Vessel GT</option>
                 <option value="200">Less than 200GT</option>
                 <option value="500">Less than 500GT</option>
-                <option value="500GT+">Over 500GT</option>
+                <option value="500+">Over 500GT</option>
               </select>
               <select
                 name="vesselKw"
