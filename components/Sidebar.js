@@ -7,24 +7,14 @@ const Sidebar = ({ isOpen, onClose, handleInputChange, formState, handleReset })
             {/* Close button */}
             {/* Close button */}
             <div className="absolute top-2 right-10 mt-4 space-x-3 align-baseline">
+                <button onClick={handleReset} className="">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5" stroke="currentColor"><path d="M125.7 160H176c17.7 0 32 14.3 32 32s-14.3 32-32 32H48c-17.7 0-32-14.3-32-32V64c0-17.7 14.3-32 32-32s32 14.3 32 32v51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z"/></svg>
+                </button>
                 <button
                     onClick={onClose}
                     className="py-2"
                 >
-                    <svg
-                        className="w-6 h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M6 18L18 6M6 6l12 12"
-                        />
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" className="w-6 h-6" stroke="currentColor"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
                 </button>
             </div>
             {/* Scrollable content */}
@@ -40,7 +30,7 @@ const Sidebar = ({ isOpen, onClose, handleInputChange, formState, handleReset })
                                 value={formState.rank}
                                 onChange={handleInputChange}
                             >
-                                <option disabled>Please select</option>
+                                <option defaultChecked>Please select</option>
                                 <option value="0">Captain</option>
                                 <option value="1">Chief Officer</option>
                                 <option value="2">Bosun & Deckhand</option>
@@ -59,7 +49,7 @@ const Sidebar = ({ isOpen, onClose, handleInputChange, formState, handleReset })
                                 value={formState.flag}
                                 onChange={handleInputChange}
                             >
-                                <option disabled>Please select</option>
+                                <option defaultChecked>Please select</option>
                                 <option value="0">Cayman</option>
                             </select>
                         </div>
@@ -104,14 +94,6 @@ const Sidebar = ({ isOpen, onClose, handleInputChange, formState, handleReset })
 
                     </form>
                     {/* Reset button */}
-                    <div className="flex justify-center pt-5">
-                        <button
-                            onClick={handleReset}
-                            className="btn btn-error"
-                        >
-                            Reset
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
