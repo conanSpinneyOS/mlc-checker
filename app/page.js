@@ -8,17 +8,17 @@ export default function Home() {
   const [reqDocs, setReqDocs] = useState([]);
   const [formState, setFormState] = useState({
     flag: null,
-    vesselGT: null,
-    vesselKw: null,
-    safehaven: null,
+    vesselGT: 0,
+    vesselKw: 0,
+    safehaven: 0, // initialize as number
     rank: null
   });
 
-  const handleSelectChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormState((prevState) => ({
       ...prevState,
-      [name]: parseInt(value)
+      [name]: parseInt(value) // ensure values are parsed as integers
     }));
   };
 
@@ -41,8 +41,9 @@ export default function Home() {
                 name="rank"
                 id="rank"
                 className="select select-bordered w-full max-w-xs"
-                onChange={handleSelectChange}
+                onChange={handleInputChange}
               >
+                <option disabled>Please select</option>
                 <option value="0">Captain</option>
                 <option value="1">Chief Officer</option>
                 <option value="2">Bosun & Deckhand</option>
@@ -53,39 +54,42 @@ export default function Home() {
               </select>
             </div>
             <div className="flex flex-col space-y-3">
-              <label htmlFor="vesselGT">Vessel GT</label>
-              <select
+              <label htmlFor="vesselGT">Vessel Tonnage (Gross Tonnage)</label>
+              <input
+                type="range"
                 name="vesselGT"
                 id="vesselGT"
-                className="select select-bordered w-full max-w-xs"
-                onChange={handleSelectChange}
-              >
-                <option value="0">Less than 200GT</option>
-                <option value="1">Less than 500GT</option>
-                <option value="2">Over 500GT</option>
-              </select>
-              <label htmlFor="vesselKw">Vessel Kw</label>
-              <select
+                min="0"
+                max="501"
+                value={formState.vesselGT}
+                className="slider"
+                onChange={handleInputChange}
+              />
+              <span>{formState.vesselGT > 500 ? ("500+") : (formState.vesselGT)} GT</span>
+              <label htmlFor="vesselKw">Vessel Engine Power (Kw)</label>
+              <input
+                type="range"
                 name="vesselKw"
                 id="vesselKw"
-                className="select select-bordered w-full max-w-xs"
-                onChange={handleSelectChange}
-              >
-                <option value="0">Less than 3000Kw</option>
-                <option value="1">Less than 6000Kw</option>
-                <option value="2">More than 6000Kw</option>
-              </select>
-              <label htmlFor="safehaven">Distance from safehaven</label>
-              <select
+                min="0"
+                max="6001"
+                value={formState.vesselKw}
+                className="slider"
+                onChange={handleInputChange}
+              />
+              <span>{formState.vesselKw > 6000 ? ("6000+") : (formState.vesselKw)} KW</span>
+              <label htmlFor="safehaven">Distance from safehaven (Miles)</label>
+              <input
+                type="range"
                 name="safehaven"
                 id="safehaven"
-                className="select select-bordered w-full max-w-xs"
-                onChange={handleSelectChange}
-              >
-                <option value="0">Up to 60 Miles</option>
-                <option value="1">Less than 150 Miles</option>
-                <option value="2">Greater than 150 miles</option>
-              </select>
+                min="0"
+                max="151"
+                value={formState.safehaven}
+                className="slider"
+                onChange={handleInputChange}
+              />
+               <span>{formState.safehaven > 150 ? ("150+") : (formState.safehaven)} Miles</span>
             </div>
             <div className="flex flex-col">
               <label htmlFor="flag">Flag</label>
@@ -93,8 +97,9 @@ export default function Home() {
                 name="flag"
                 id="flag"
                 className="select select-bordered w-full max-w-xs"
-                onChange={handleSelectChange}
+                onChange={handleInputChange}
               >
+                <option disabled>Please select</option>
                 <option value="0">Cayman</option>
               </select>
             </div>
