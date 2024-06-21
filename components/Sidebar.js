@@ -30,7 +30,7 @@ const Sidebar = ({ isOpen, onClose, handleInputChange, formState, handleReset })
                                 value={formState.rank}
                                 onChange={handleInputChange}
                             >
-                                <option defaultChecked>Please select</option>
+                                <option value={-1}>Please select</option>
                                 <option value="0">Captain</option>
                                 <option value="1">Chief Officer</option>
                                 <option value="2">Bosun & Deckhand</option>
@@ -49,11 +49,23 @@ const Sidebar = ({ isOpen, onClose, handleInputChange, formState, handleReset })
                                 value={formState.flag}
                                 onChange={handleInputChange}
                             >
-                                <option defaultChecked>Please select</option>
+                                <option value={-1}>Please select</option>
                                 <option value="0">Cayman</option>
                             </select>
                         </div>
                         <div className="flex flex-col space-y-3">
+                        <label htmlFor="vesselKw">Vessel Engine Power (Kw)</label>
+                            <input
+                                type="range"
+                                name="vesselKw"
+                                id="vesselKw"
+                                min="0"
+                                max="6001"
+                                value={formState.vesselKw}
+                                className="range"
+                                onChange={handleInputChange}
+                            />
+                            <span>{formState.vesselKw > 6000 ? ("6000+") : (formState.vesselKw)} KW</span>
                             <label htmlFor="vesselGT">Vessel Tonnage (Gross Tonnage)</label>
                             <input
                                 type="range"
@@ -66,18 +78,6 @@ const Sidebar = ({ isOpen, onClose, handleInputChange, formState, handleReset })
                                 onChange={handleInputChange}
                             />
                             <span>{formState.vesselGT > 500 ? ("500+") : (formState.vesselGT)} GT</span>
-                            <label htmlFor="vesselKw">Vessel Engine Power (Kw)</label>
-                            <input
-                                type="range"
-                                name="vesselKw"
-                                id="vesselKw"
-                                min="0"
-                                max="6001"
-                                value={formState.vesselKw}
-                                className="range"
-                                onChange={handleInputChange}
-                            />
-                            <span>{formState.vesselKw > 6000 ? ("6000+") : (formState.vesselKw)} KW</span>
                             <label htmlFor="safehaven">Distance from safehaven (Miles)</label>
                             <input
                                 type="range"
