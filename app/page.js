@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Sidebar from "@/components/Sidebar";
+import CardContainer from "@/components/CardContainer";
 import Header from "@/components/Header";
 import { documents } from "@/lib/docs";
 import { getDocumentIds } from "@/lib/rules";
@@ -51,7 +52,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative h-screen ">
+    <div className="relative bg-base-1 overflow-x-hidden">
       {/* Sidebar */}
       <Sidebar
         isOpen={isSidebarOpen}
@@ -62,37 +63,14 @@ export default function Home() {
       />
 
       {/* Main Content */}
-      <div className="relative">
+      <div className="relative p-5">
         <Header />
         <div className="w-full py-4">
           <button className="btn btn-outline" onClick={toggleSidebar}>Filters</button>
         </div>
-        <main className="p-10">
-          <h2>MLC Checker</h2>
+        <main>
           <div className="space-y-5">
-            <div className="bg-slate-200 border-1 rounded">
-              <div className="overflow-x-auto">
-                <table className="table">
-                  {/* Table Contents */}
-                  <thead>
-                    <tr>
-                      <th>Qualification</th>
-                      <th>Type</th>
-                      <th>Valid for</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredDocs.map((doc) => (
-                      <tr key={doc.id}>
-                        <td>{doc.name}</td>
-                        <td>{doc.type}</td>
-                        <td>{doc.validFor}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <CardContainer filteredDocs={filteredDocs} />
           </div>
         </main>
       </div>
