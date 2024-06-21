@@ -25,6 +25,16 @@ export default function Home() {
     }));
   };
 
+  const handleReset = () => {
+    setFormState({
+      flag: null,
+      vesselGT: 0,
+      vesselKw: 0,
+      safehaven: 0,
+      rank: null
+    });
+  };
+
   useEffect(() => {
     const docs = getDocumentIds(formState);
     setReqDocs(docs);
@@ -43,89 +53,23 @@ export default function Home() {
   return (
     <div className="relative h-screen ">
       {/* Sidebar */}
-      <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={closeSidebar}
+        handleInputChange={handleInputChange}
+        formState={formState}
+        handleReset={handleReset}
+      />
 
       {/* Main Content */}
       <div className="relative">
         <Header />
-        <div className="w-full bg-red-300 p-4">
+        <div className="w-full py-4">
           <button className="btn btn-outline" onClick={toggleSidebar}>Filters</button>
         </div>
         <main className="p-10">
           <h2>MLC Checker</h2>
           <div className="space-y-5">
-            <div className="bg-slate-200 border-1 rounded p-7">
-              <form className="space-y-3">
-                <div className="flex flex-col">
-                  <label htmlFor="rank">Rank</label>
-                  <select
-                    name="rank"
-                    id="rank"
-                    className="select select-bordered w-full max-w-xs"
-                    onChange={handleInputChange}
-                  >
-                    <option disabled>Please select</option>
-                    <option value="0">Captain</option>
-                    <option value="1">Chief Officer</option>
-                    <option value="2">Bosun & Deckhand</option>
-                    <option value="3">Chief Engineer</option>
-                    <option value="4">2nd Engineer</option>
-                    <option value="5">Stewardess</option>
-                    <option value="6">Chef</option>
-                  </select>
-                </div>
-                <div className="flex flex-col space-y-3">
-                  <label htmlFor="vesselGT">Vessel Tonnage (Gross Tonnage)</label>
-                  <input
-                    type="range"
-                    name="vesselGT"
-                    id="vesselGT"
-                    min="0"
-                    max="501"
-                    value={formState.vesselGT}
-                    className="slider"
-                    onChange={handleInputChange}
-                  />
-                  <span>{formState.vesselGT > 500 ? ("500+") : (formState.vesselGT)} GT</span>
-                  <label htmlFor="vesselKw">Vessel Engine Power (Kw)</label>
-                  <input
-                    type="range"
-                    name="vesselKw"
-                    id="vesselKw"
-                    min="0"
-                    max="6001"
-                    value={formState.vesselKw}
-                    className="slider"
-                    onChange={handleInputChange}
-                  />
-                  <span>{formState.vesselKw > 6000 ? ("6000+") : (formState.vesselKw)} KW</span>
-                  <label htmlFor="safehaven">Distance from safehaven (Miles)</label>
-                  <input
-                    type="range"
-                    name="safehaven"
-                    id="safehaven"
-                    min="0"
-                    max="151"
-                    value={formState.safehaven}
-                    className="slider"
-                    onChange={handleInputChange}
-                  />
-                  <span>{formState.safehaven > 150 ? ("150+") : (formState.safehaven)} Miles</span>
-                </div>
-                <div className="flex flex-col">
-                  <label htmlFor="flag">Flag</label>
-                  <select
-                    name="flag"
-                    id="flag"
-                    className="select select-bordered w-full max-w-xs"
-                    onChange={handleInputChange}
-                  >
-                    <option disabled>Please select</option>
-                    <option value="0">Cayman</option>
-                  </select>
-                </div>
-              </form>
-            </div>
             <div className="bg-slate-200 border-1 rounded">
               <div className="overflow-x-auto">
                 <table className="table">
